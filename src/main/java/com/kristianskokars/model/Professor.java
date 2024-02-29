@@ -8,6 +8,20 @@ public class Professor {
     private String surname;
     private Degree degree;
 
+    public Professor() {
+        generateId();
+        setName("Janis");
+        setSurname("Berzins");
+        setDegree(Degree.OTHER);
+    }
+
+    public Professor(String name, String surname, Degree degree) {
+        generateId();
+        setName(name);
+        setSurname(surname);
+        setDegree(degree);
+    }
+
     public Long getId() {
         return id;
     }
@@ -46,5 +60,10 @@ public class Professor {
         if (degree == null) return;
 
         this.degree = degree;
+    }
+
+    @Override
+    public String toString() {
+        return id + ":" + degree + " " + name + " " + surname + " ";
     }
 }
