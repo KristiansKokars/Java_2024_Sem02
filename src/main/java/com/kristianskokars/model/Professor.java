@@ -1,5 +1,7 @@
 package com.kristianskokars.model;
 
+import com.kristianskokars.validator.NameValidator;
+
 public class Professor {
     private static long idCounter = 0;
 
@@ -36,7 +38,7 @@ public class Professor {
     }
 
     public void setName(String name) {
-        if (name != null && name.matches("[A-Z][a-z]+[A-Z][a-z]+?")) {
+        if (name != null && NameValidator.isValidLatvianName(name)) {
             this.name = name;
         }
     }
@@ -46,7 +48,7 @@ public class Professor {
     }
 
     public void setSurname(String surname) {
-        if (surname != null && name.matches("[A-Z][a-z]+ [A-Z][a-z]+")) {
+        if (surname != null && NameValidator.isValidLatvianName(surname)) {
             this.surname = surname;
         }
     }
