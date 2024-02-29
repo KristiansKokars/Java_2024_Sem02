@@ -9,6 +9,18 @@ public class Student {
     private String name;
     private String surname;
 
+    public Student() {
+        generateId();
+        setName("Pēteris");
+        setSurname("Liepa");
+    }
+
+    public Student(String name, String surname) {
+        generateId();
+        setName(name);
+        setSurname(surname);
+    }
+
     public void generateId() {
         id = idCounter;
         idCounter++;
@@ -19,9 +31,11 @@ public class Student {
     }
 
     public void setName(String name) {
-        if (name == null || !NameValidator.isValidLatvianName(name)) return;
-
-        this.name = name;
+        if (name == null || !NameValidator.isValidLatvianName(name)) {
+            this.name = "---";
+        } else {
+            this.name = name;
+        }
     }
 
     public String getSurname() {
@@ -29,9 +43,11 @@ public class Student {
     }
 
     public void setSurname(String surname) {
-        if (surname == null || !NameValidator.isValidLatvianName(surname)) return;
-
-        this.surname = surname;
+        if (surname == null || !NameValidator.isValidLatvianName(surname)) {
+            this.name = "---";
+        } else {
+            this.surname = surname;
+        }
     }
 
     @Override
