@@ -40,6 +40,8 @@ public class Professor {
     public void setName(String name) {
         if (name != null && NameValidator.isValidLatvianName(name)) {
             this.name = name;
+        } else {
+            this.name = "---";
         }
     }
 
@@ -50,6 +52,8 @@ public class Professor {
     public void setSurname(String surname) {
         if (surname != null && NameValidator.isValidLatvianName(surname)) {
             this.surname = surname;
+        } else {
+            this.name = "---";
         }
     }
 
@@ -58,10 +62,11 @@ public class Professor {
     }
 
     public void setDegree(Degree degree) {
-        // I do not like setting any value when you do null
-        if (degree == null) return;
-
-        this.degree = degree;
+        if (degree != null) {
+            this.degree = degree;
+        } else {
+            this.degree = Degree.OTHER;
+        }
     }
 
     @Override
