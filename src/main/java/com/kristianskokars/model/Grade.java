@@ -65,6 +65,6 @@ public class Grade {
 
     @Override
     public String toString() {
-        return id + " " + value + " " + student + " " + course;
+        return student.getName() + " " + student.getSurname() + " got a " + value + " in " + course.getTitle();
     }
 }
