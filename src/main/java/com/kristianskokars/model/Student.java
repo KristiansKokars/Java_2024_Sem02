@@ -44,7 +44,7 @@ public class Student {
 
     public void setSurname(String surname) {
         if (surname == null || !NameValidator.isValidLatvianName(surname)) {
-            this.name = "---";
+            this.surname = "---";
         } else {
             this.surname = surname;
         }
