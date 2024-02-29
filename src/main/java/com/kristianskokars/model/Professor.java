@@ -53,7 +53,7 @@ public class Professor {
         if (surname != null && NameValidator.isValidLatvianName(surname)) {
             this.surname = surname;
         } else {
-            this.name = "---";
+            this.surname = "---";
         }
     }
 
