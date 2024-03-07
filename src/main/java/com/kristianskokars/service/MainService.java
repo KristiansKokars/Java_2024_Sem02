@@ -46,6 +46,13 @@ public class MainService {
 
         GradeService.sortStudentsByAverageGrade(allStudents, allGrades);
         printList(allStudents);
+
+        ArrayList<Person> mixedList = new ArrayList<>();
+        mixedList.add(st1);
+        mixedList.add(pr1);
+        mixedList.add(st2);
+        mixedList.add(pr2);
+        printList(mixedList);
     }
 
     private static <T> void printList(List<T> list) {
