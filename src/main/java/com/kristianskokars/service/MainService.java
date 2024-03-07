@@ -44,8 +44,10 @@ public class MainService {
 
         printList(allGrades);
 
-        GradeService.sortStudentsByAverageGrade(allStudents, allGrades);
-        printList(allStudents);
+        System.out.println("--------");
+        var sortedStudents = GradeService.sortStudentsByAverageGrade(allStudents, allGrades);
+        printList(sortedStudents);
+        System.out.println("--------");
 
         ArrayList<Person> mixedList = new ArrayList<>();
         mixedList.add(st1);

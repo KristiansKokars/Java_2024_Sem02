@@ -16,13 +16,21 @@ public class AverageGradeComparator implements Comparator<Student> {
 
     @Override
     public int compare(Student o1, Student o2) {
-        try {
-            var student1AverageGrade = GradeService.getAverageGradeForStudent(o1, grades);
-            var student2AverageGrade = GradeService.getAverageGradeForStudent(o2, grades);
+        double student1AverageGrade;
+        double student2AverageGrade;
 
-            return Double.compare(student1AverageGrade, student2AverageGrade);
+        try {
+            student1AverageGrade = GradeService.getAverageGradeForStudent(o1, grades);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            return -1;
         }
+
+        try {
+            student2AverageGrade = GradeService.getAverageGradeForStudent(o2, grades);
+        } catch (Exception e) {
+            return 1;
+        }
+
+        return Double.compare(student1AverageGrade, student2AverageGrade);
     }
 }

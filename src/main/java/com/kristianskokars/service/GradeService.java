@@ -71,39 +71,18 @@ public class GradeService {
         return professorCourses.size();
     }
 
-    public static void sortStudentsByAverageGrade(ArrayList<Student> students, ArrayList<Grade> grades) throws Exception {
-        // Easiest option
-//        students.sort(new AverageGradeComparator(grades));
-
-        // Manual option
-        var cachedStudentGrades = new HashMap<Long, Double>();
-
-        var length = students.size();
-        for (int i = 0; i < length - 1; i++) {
-            for (int j = 0; j < length - i - 1; j++) {
-                double firstStudentGrade;
-                Student firstStudent = students.get(j);
-                if (cachedStudentGrades.containsKey(firstStudent.getId())) {
-                    firstStudentGrade = cachedStudentGrades.get(firstStudent.getId());
-                } else {
-                    firstStudentGrade = getAverageGradeForStudent(firstStudent, grades);
-                    cachedStudentGrades.put(firstStudent.getId(), firstStudentGrade);
-                }
-
-                double secondStudentGrade;
-                Student secondStudent = students.get(j + 1);
-                if (cachedStudentGrades.containsKey(secondStudent.getId())) {
-                    secondStudentGrade = cachedStudentGrades.get(secondStudent.getId());
-                } else {
-                    secondStudentGrade = getAverageGradeForStudent(secondStudent, grades);
-                    cachedStudentGrades.put(secondStudent.getId(), secondStudentGrade);
-                }
-
-                if (firstStudentGrade > secondStudentGrade) {
-                    students.set(i, secondStudent);
-                    students.set(j, firstStudent);
-                }
-            }
-        }
+    public static List<Student> sortStudentsByAverageGrade(ArrayList<Student> students, ArrayList<Grade> grades) throws Exception {
+        return students
+                .stream()
+                .filter((student) -> {
+                    try {
+                        getAverageGradeForStudent(student, grades);
+                        return true;
+                    } catch (Exception e) {
+                        return false;
+                    }
+                })
+                .sorted(new AverageGradeComparator(grades))
+                .toList();
     }
 }
