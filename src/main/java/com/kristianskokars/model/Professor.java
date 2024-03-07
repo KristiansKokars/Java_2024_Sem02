@@ -2,12 +2,10 @@ package com.kristianskokars.model;
 
 import com.kristianskokars.validator.NameValidator;
 
-public class Professor {
+public class Professor extends Person {
     private static long idCounter = 0;
 
     private Long id;
-    private String name;
-    private String surname;
     private Degree degree;
 
     public Professor() {
@@ -33,30 +31,6 @@ public class Professor {
         idCounter++;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        if (name != null && NameValidator.isValidLatvianName(name)) {
-            this.name = name;
-        } else {
-            this.name = "---";
-        }
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        if (surname != null && NameValidator.isValidLatvianName(surname)) {
-            this.surname = surname;
-        } else {
-            this.surname = "---";
-        }
-    }
-
     public Degree getDegree() {
         return degree;
     }
@@ -71,6 +45,6 @@ public class Professor {
 
     @Override
     public String toString() {
-        return id + ":" + degree + " " + name + " " + surname + " ";
+        return id + ":" + degree + " " + getName() + " " + getSurname() + " ";
     }
 }
